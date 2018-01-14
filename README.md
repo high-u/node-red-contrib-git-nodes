@@ -4,7 +4,7 @@ For Node-RED.
 
 Manage the flow in git repository.
 
-![diff image](./screenshots/git-flows-node.png)
+![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-flows-node.png)
 
 ## Feature
 
@@ -31,7 +31,7 @@ Manage the flow in git repository.
 
 ### github example
 
-![diff image](./screenshots/github-diff.png)
+![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/github-diff.png)
 
 ## install
 
@@ -44,20 +44,20 @@ npm install --save node-red-contrib-git-flows
 ### Local git
 
 1. Check `git repository (ssh)` property.
-    - ![check property](./screenshots/git-flows-property-local.png)
+    - ![check property](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-flows-property-local.png)
 2. Press node button.
-    - ![press button](./screenshots/press-button.png)
+    - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/press-button.png)
 
 ### Push to github
 
 1. Register ssh key.
     - https://github.com/settings/keys
 2. Make an empty repository newly.
-    - ![new repository](./screenshots/new-repository.png)
+    - ![new repository](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/new-repository.png)
 3. Input `git repository (ssh)` property.
-    - ![new repository](./screenshots/git-flows-property.png)
+    - ![new repository](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-flows-property.png)
 4. Press node button.
-    - ![press button](./screenshots/press-button.png)
+    - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/press-button.png)
 
 ## Dependence
 

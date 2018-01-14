@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-git-flows",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "node-red": {
     "nodes": {
       "git-flows": "git-flows.js"
