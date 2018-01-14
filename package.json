@@ -1,0 +1,32 @@
+{
+  "name": "node-red-contrib-git-flows",
+  "version": "0.0.1",
+  "node-red": {
+    "nodes": {
+      "git-flows": "git-flows.js"
+    }
+  },
+  "description": "for Node-RED. management flows.",
+  "main": "git-flows.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/high-u/node-red-contrib-git-flows.git"
+  },
+  "keywords": [
+    "node-red",
+    "git",
+    "flows",
+    "diff",
+    "push",
+    "commit"
+  ],
+  "author": "high-u <zen.crazyd@gmail.com> (https://github.com/high-u)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/high-u/node-red-contrib-git-flows/issues"
+  },
+  "homepage": "https://github.com/high-u/node-red-contrib-git-flows#readme"
+}
