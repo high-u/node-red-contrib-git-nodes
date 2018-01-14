@@ -14,14 +14,14 @@
       },
       inputs: 0,
       outputs: 0,
-      icon: 'push2github.png',
+      icon: 'icon.png',
       label: function () {
-          return this.name || "git push";
+          return this.name || "git repository";
       },
       button: {
         onclick: function() {
           //alert("")
-          var commitMessage = prompt("aa")
+          var commitMessage = prompt("Input commit message")
           //alert(commitMessage)
           var node = this;
           $.ajax({
@@ -29,18 +29,10 @@
             data: { commitMessage: commitMessage },
             type:"post",
             success: function(resp) {
-              RED.notify(node._("git-repository-flows.success",{label:label}),"success");
+              RED.notify(node._("git command success",{label:"git"}),"success");
             },
             error: function(jqXHR,textStatus,errorThrown) {
-              if (jqXHR.status == 404) {
-                RED.notify(node._("common.notification.error1",{message:node._("common.notification.errors.not-deployed")}),"error");
-              } else if (jqXHR.status == 500) {
-                RED.notify(node._("common.notification.error2",{message:node._("inject.errors.failed")}),"error");
-              } else if (jqXHR.status == 0) {
-                RED.notify(node._("common.notification.error3",{message:node._("common.notification.errors.no-response")}),"error");
-              } else {
-                RED.notify(node._("common.notification.error4",{message:node._("common.notification.errors.unexpected",{status:jqXHR.status,message:textStatus})}),"error");
-              }
+              RED.notify(node._("git command error",{label:"git"}),"error");
             }
         });
       }
@@ -53,34 +45,35 @@
     <input type='text' id='node-input-label' placeholder='' style='width:60%;'>
   </div>
   <div class='form-row'>
-    <label for='node-input-username' style='width:150px;'><i class='fa fa-tag'></i> User Name</label>
+    <label for='node-input-username' style='width:150px;'><i class='fa fa-user'></i> git config user.name</label>
     <input type='text' id='node-input-username' placeholder='' style='width:60%;'>
   </div>
   <div class="form-row">
-    <label for="node-input-email" style='width:150px;'><i class="fa fa-tag"></i> Mail Address</label>
+    <label for="node-input-email" style='width:150px;'><i class="fa fa-envelope"></i> git config user.email</label>
     <input type="text" id="node-input-email" placeholder='foobar@example.com' style='width:60%;'>
   </div>
   <div class="form-row">
-    <label for="node-input-git" style='width:150px;'><i class="fa fa-tag"></i> Git SSH</label>
-    <input type="text" id="node-input-git" placeholder='git@github.com:{user-name}/{repository-name}.git' style='width:60%;'>
-  </div>
-  <div class="form-row">
-    <label for="node-input-gitadd" style='width:150px;'><i class="fa fa-tag"></i> git add</label>
-    <input type="text" id="node-input-gitadd" placeholder='settings.js,package.json' style='width:60%;'>
-  </div>
-  <div class="form-row">
-    <label for="node-input-gitrmcache" style='width:150px;'><i class="fa fa-tag"></i> .gitrmcache</label>
-    <input type="text" id="node-input-gitrmcache" placeholder='nodes/*/x,nodes/*/y,nodes/*/z' style='width:60%;'>
-  </div>
-  <div class="form-row">
-    <label style='width:150px;'>Include credential</label>
+    <label style='width:150px;'><i class="fa fa-plus-square"></i> Include credential</label>
     <input type="checkbox" id="node-input-includeCredential" style="display: inline-block; width: auto; vertical-align: top;">
     <label for="node-input-includeCredential" style="width: 60%;"> (ex: git add flows_cred.json)</label>
   </div>
   <div class="form-row">
-    <label style='width:150px;'> Output to debugging</label>
+    <label for="node-input-gitadd" style='width:150px;'><i class="fa fa-plus"></i> git add</label>
+    <input type="text" id="node-input-gitadd" placeholder='settings.js,package.json' style='width:60%;'>
+  </div>
+  <div class="form-row">
+    <label for="node-input-gitrmcache" style='width:150px;'><i class="fa fa-minus"></i> .git rm</label>
+    <input type="text" id="node-input-gitrmcache" placeholder='nodes/*/x,nodes/*/y,nodes/*/z' style='width:60%;'>
+  </div>
+  <div class="form-row">
+    <label style='width:150px;'><i class="fa fa-sign-in"></i> Output to debugging</label>
     <input type="checkbox" id="node-input-debugging" style="display: inline-block; width: auto; vertical-align: top;">
     <label for="node-input-debugging" style="width: 60%;"> &nbsp;</label>
+  </div>
+  <hr />
+  <div class="form-row">
+    <label for="node-input-git" style='width:150px;'><i class="fa fa-code-fork"></i> git repository (ssh)</label>
+    <input type="text" id="node-input-git" placeholder='git@github.com:{user-name}/{repository-name}.git' style='width:60%;'>
   </div>
 </script>
 <script type='text/x-red' data-help-name='push2github'>
