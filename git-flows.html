@@ -1,14 +1,14 @@
 <script type='text/javascript'>
-  RED.nodes.registerType('push2github', {
+  RED.nodes.registerType('git-flows', {
       category: 'advanced',
       color: '#AAAAAA',
       defaults: {
         label: { value: '' },
         username: { value: '' },
         email: { value: '' },
-        git: { value: '', required: true },
-        gitadd: { value: 'settings.js,package.json', required: true },
-        gitrmcache: { value: 'nodes/*/x,nodes/*/y,nodes/*/z', required: true },
+        git: { value: '' },
+        gitadd: { value: 'settings.js,package.json' },
+        gitrmcache: { value: 'nodes/*/x,nodes/*/y,nodes/*/z' },
         includeCredential: { value: false},
         debugging: { value: true}
       },
@@ -16,7 +16,7 @@
       outputs: 0,
       icon: 'icon.png',
       label: function () {
-          return this.name || "git repository";
+          return this.name || "git flows";
       },
       button: {
         onclick: function() {
@@ -25,7 +25,7 @@
           //alert(commitMessage)
           var node = this;
           $.ajax({
-            url: "git-repository-flows/"+this.id,
+            url: "git-flows/"+this.id,
             data: { commitMessage: commitMessage },
             type:"post",
             success: function(resp) {
@@ -39,7 +39,7 @@
     }
   });
 </script>
-<script type='text/x-red' data-template-name='push2github'>
+<script type='text/x-red' data-template-name='git-flows'>
   <div class='form-row'>
     <label for='node-input-label' style='width:150px;'><i class='fa fa-tag'></i> Name</label>
     <input type='text' id='node-input-label' placeholder='' style='width:60%;'>
@@ -76,7 +76,7 @@
     <input type="text" id="node-input-git" placeholder='git@github.com:{user-name}/{repository-name}.git' style='width:60%;'>
   </div>
 </script>
-<script type='text/x-red' data-help-name='push2github'>
+<script type='text/x-red' data-help-name='git-flows'>
   <dl>
       <dt></dt>
       <dd></dd>
