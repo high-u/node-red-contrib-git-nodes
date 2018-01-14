@@ -9,7 +9,6 @@
         git: { value: '' },
         gitadd: { value: 'settings.js,package.json' },
         gitrmcache: { value: 'nodes/*/x,nodes/*/y,nodes/*/z' },
-        includeCredential: { value: false},
         debugging: { value: true}
       },
       inputs: 0,
@@ -44,31 +43,27 @@
     <label for='node-input-label' style='width:150px;'><i class='fa fa-tag'></i> Name</label>
     <input type='text' id='node-input-label' placeholder='' style='width:60%;'>
   </div>
-  <div class='form-row'>
-    <label for='node-input-username' style='width:150px;'><i class='fa fa-user'></i> git config user.name</label>
-    <input type='text' id='node-input-username' placeholder='' style='width:60%;'>
-  </div>
   <div class="form-row">
-    <label for="node-input-email" style='width:150px;'><i class="fa fa-envelope"></i> git config user.email</label>
-    <input type="text" id="node-input-email" placeholder='foobar@example.com' style='width:60%;'>
-  </div>
-  <div class="form-row">
-    <label style='width:150px;'><i class="fa fa-plus-square"></i> Include credential</label>
-    <input type="checkbox" id="node-input-includeCredential" style="display: inline-block; width: auto; vertical-align: top;">
-    <label for="node-input-includeCredential" style="width: 60%;"> (ex: git add flows_cred.json)</label>
-  </div>
-  <div class="form-row">
-    <label for="node-input-gitadd" style='width:150px;'><i class="fa fa-plus"></i> git add</label>
+    <label for="node-input-gitadd" style='width:150px;'><i class="fa fa-plus-circle"></i> git add</label>
     <input type="text" id="node-input-gitadd" placeholder='settings.js,package.json' style='width:60%;'>
   </div>
   <div class="form-row">
-    <label for="node-input-gitrmcache" style='width:150px;'><i class="fa fa-minus"></i> .git rm</label>
+    <label for="node-input-gitrmcache" style='width:150px;'><i class="fa fa-minus-circle"></i> git rm</label>
     <input type="text" id="node-input-gitrmcache" placeholder='nodes/*/x,nodes/*/y,nodes/*/z' style='width:60%;'>
   </div>
   <div class="form-row">
-    <label style='width:150px;'><i class="fa fa-sign-in"></i> Output to debugging</label>
+    <label style='width:150px;'><i class="fa fa-sign-in"></i> Turns on debugging</label>
     <input type="checkbox" id="node-input-debugging" style="display: inline-block; width: auto; vertical-align: top;">
     <label for="node-input-debugging" style="width: 60%;"> &nbsp;</label>
+  </div>
+  <hr />
+  <div class='form-row'>
+    <label for='node-input-username' style='width:150px;'><i class='fa fa-user-o'></i> git user.name</label>
+    <input type='text' id='node-input-username' placeholder='' style='width:60%;'>
+  </div>
+  <div class="form-row">
+    <label for="node-input-email" style='width:150px;'><i class="fa fa-envelope-o"></i> git user.email</label>
+    <input type="text" id="node-input-email" placeholder='foobar@example.com' style='width:60%;'>
   </div>
   <hr />
   <div class="form-row">
@@ -78,7 +73,33 @@
 </script>
 <script type='text/x-red' data-help-name='git-flows'>
   <dl>
-      <dt></dt>
-      <dd></dd>
+    <dt>Press button</dt>
+    <dd>
+      git init<br />
+      git remote add origin<br />
+      git config --local user.name<br />
+      git config --local user.email<br />
+      git add flows.json<br />
+      git add xxx<br />
+      git rm --cached xxx<br />
+      git status<br />
+      git commit -m "xxx"<br />
+      git push -u origin master
+    </dd>
+  </dl>
+  <hr />
+  <dl>
+      <dt>git add</dt>
+      <dd>Input file name by Comma Separated Value.</dd>
+      <dt>git rm</dt>
+      <dd>Input file name by Comma Separated Value.</dd>
+      <dt>Turns on debugging</dt>
+      <dd>Show results on debug tab.</dd>
+      <dt>git user.name</dt>
+      <dd>git config --local user.name</dd>
+      <dt>git user.email</dt>
+      <dd>git config --local user.email</dd>
+      <dt>git repository (ssh)</dt>
+      <dd>ex: git@github.com:high-u/node-red-git-test.git</dd>
   </dl>
 </script>

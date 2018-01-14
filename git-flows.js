@@ -13,7 +13,6 @@ module.exports = function (RED) {
     this.git = n.git
     this.gitrmcache = n.gitrmcache
     this.gitadd = n.gitadd
-    this.includeCredential = n.includeCredential
     this.debugging = n.debugging
     node = this
   }
@@ -24,10 +23,9 @@ module.exports = function (RED) {
     if (addminNode != null) {      
       addminNode.receive();
 
-      // get flows.json & flows_cred.json
+      // get flows.json
       var flowsFile = RED.settings.userDir + '/' + RED.settings.flowFile
       var flowsJson = fs.readFileSync(flowsFile, 'utf-8')
-      var flowsCredFile = flowsFile.replace( /.json$/ , '_cred.json' ) 
 
       // remove nodes files
       fs.emptyDirSync(RED.settings.userDir + '/nodes')
@@ -84,15 +82,6 @@ module.exports = function (RED) {
         'git add ' + 'nodes',
       ].join(';')
       execSync(cmd).toString()
-
-      // git add flows credential
-      if (node.includeCredential) {
-        cmd = [
-          'cd ' + RED.settings.userDir,
-          'git add ' + flowsCredFile,
-        ].join(';')
-        execSync(cmd).toString()
-      }
 
       // git add
       if (node.gitadd) {
