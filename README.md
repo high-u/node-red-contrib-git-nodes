@@ -43,7 +43,7 @@ npm install --save node-red-contrib-git-nodes
 
 ### Local git
 
-1. Check `git repository (ssh)` property.
+1. Check `git add` and `git rm` property.
     - ![check property](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/git-nodes-property-local.png)
 2. Press node button.
     - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/press-button.png)
