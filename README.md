@@ -4,7 +4,7 @@ For Node-RED.
 
 Manage the flow in git repository.
 
-![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/git-nodes-node.png)
+![node image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-nodes-node.png)
 
 ## Feature
 
