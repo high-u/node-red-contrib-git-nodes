@@ -1,5 +1,5 @@
 <script type='text/javascript'>
-  RED.nodes.registerType('git-flows', {
+  RED.nodes.registerType('git-nodes', {
       category: 'advanced',
       color: '#AAAAAA',
       defaults: {
@@ -15,7 +15,7 @@
       outputs: 0,
       icon: 'icon.png',
       label: function () {
-          return this.name || "git flows";
+          return this.name || "git nodes";
       },
       button: {
         onclick: function() {
@@ -24,7 +24,7 @@
           //alert(commitMessage)
           var node = this;
           $.ajax({
-            url: "git-flows/"+this.id,
+            url: "git-nodes/"+this.id,
             data: { commitMessage: commitMessage },
             type:"post",
             success: function(resp) {
@@ -38,7 +38,7 @@
     }
   });
 </script>
-<script type='text/x-red' data-template-name='git-flows'>
+<script type='text/x-red' data-template-name='git-nodes'>
   <div class='form-row'>
     <label for='node-input-label' style='width:150px;'><i class='fa fa-tag'></i> Name</label>
     <input type='text' id='node-input-label' placeholder='' style='width:60%;'>
@@ -71,7 +71,7 @@
     <input type="text" id="node-input-git" placeholder='git@github.com:{user-name}/{repository-name}.git' style='width:60%;'>
   </div>
 </script>
-<script type='text/x-red' data-help-name='git-flows'>
+<script type='text/x-red' data-help-name='git-nodes'>
   <dl>
     <dt>Press button</dt>
     <dd>

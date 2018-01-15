@@ -5,7 +5,7 @@ module.exports = function (RED) {
   var execSync = require('child_process').execSync
   var node;
 
-  function gitFlowsNode(n) {
+  function gitNodesNode(n) {
 
     RED.nodes.createNode(this, n)
     this.username = n.username
@@ -16,9 +16,9 @@ module.exports = function (RED) {
     this.debugging = n.debugging
     node = this
   }
-  RED.nodes.registerType('git-flows', gitFlowsNode)
+  RED.nodes.registerType('git-nodes', gitNodesNode)
 
-  RED.httpAdmin.post("/git-flows/:id", RED.auth.needsPermission("git-flows.write"), function(req,res) {
+  RED.httpAdmin.post("/git-nodes/:id", RED.auth.needsPermission("git-nodes.write"), function(req,res) {
     var addminNode = RED.nodes.getNode(req.params.id);
     if (addminNode != null) {      
       addminNode.receive();

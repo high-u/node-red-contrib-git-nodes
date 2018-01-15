@@ -1,10 +1,10 @@
-# node-red-contrib-git-flows
+# node-red-contrib-git-nodes
 
 For Node-RED.
 
 Manage the flow in git repository.
 
-![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-flows-node.png)
+![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/git-nodes-node.png)
 
 ## Feature
 
@@ -31,12 +31,12 @@ Manage the flow in git repository.
 
 ### github example
 
-![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/github-diff.png)
+![diff image](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/github-diff.png)
 
 ## install
 
 ```bash
-npm install --save node-red-contrib-git-flows
+npm install --save node-red-contrib-git-nodes
 ```
 
 ## Usage
@@ -44,20 +44,20 @@ npm install --save node-red-contrib-git-flows
 ### Local git
 
 1. Check `git repository (ssh)` property.
-    - ![check property](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-flows-property-local.png)
+    - ![check property](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/git-nodes-property-local.png)
 2. Press node button.
-    - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/press-button.png)
+    - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/press-button.png)
 
 ### Push to github
 
 1. Register ssh key.
     - https://github.com/settings/keys
 2. Make an empty repository newly.
-    - ![new repository](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/new-repository.png)
+    - ![new repository](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/new-repository.png)
 3. Input `git repository (ssh)` property.
-    - ![new repository](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/git-flows-property.png)
+    - ![new repository](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/git-nodes-property.png)
 4. Press node button.
-    - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-flows/master/screenshots/press-button.png)
+    - ![press button](https://raw.githubusercontent.com/high-u/node-red-contrib-git-nodes/master/screenshots/press-button.png)
 
 ## Dependence
 

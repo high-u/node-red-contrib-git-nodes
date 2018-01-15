@@ -1,19 +1,19 @@
 {
-  "name": "node-red-contrib-git-flows",
+  "name": "node-red-contrib-git-nodes",
   "version": "0.0.2",
   "node-red": {
     "nodes": {
-      "git-flows": "git-flows.js"
+      "git-nodes": "git-nodes.js"
     }
   },
   "description": "for Node-RED. management flows.",
-  "main": "git-flows.js",
+  "main": "git-nodes.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/high-u/node-red-contrib-git-flows.git"
+    "url": "git+https://github.com/high-u/node-red-contrib-git-nodes.git"
   },
   "keywords": [
     "node-red",
@@ -26,7 +26,7 @@
   "author": "high-u <zen.crazyd@gmail.com> (https://github.com/high-u)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/high-u/node-red-contrib-git-flows/issues"
+    "url": "https://github.com/high-u/node-red-contrib-git-nodes/issues"
   },
-  "homepage": "https://github.com/high-u/node-red-contrib-git-flows#readme"
+  "homepage": "https://github.com/high-u/node-red-contrib-git-nodes#readme"
 }
