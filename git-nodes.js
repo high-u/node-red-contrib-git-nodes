@@ -23,10 +23,26 @@ module.exports = function (RED) {
     if (addminNode != null) {      
       addminNode.receive();
 
-      // get flows.json
-      var flowsFile = RED.settings.userDir + '/' + RED.settings.flowFile
-      var flowsJson = fs.readFileSync(flowsFile, 'utf-8')
+      var userDir = ''
+      if (RED.settings.userDir) {
+        userDir = RED.settings.userDir
+      }
+      else {
+        userDir = process.env.HOME + '/.node-red'
+      }
 
+      var flowFile = ''
+      if (RED.settings.flowFile) {
+        flowFile = RED.settings.flowFile
+      }
+      else {
+        flowFile = 'flows_'+require('os').hostname()+'.json'
+      }
+      // get flows.json
+      var flowsFilePath = userDir + '/' + flowFile
+
+      var flowsJson = fs.readFileSync(flowsFilePath, 'utf-8')
+      
       if (fs.pathExistsSync(RED.settings.userDir + '/nodes')) {
         // remove nodes files
         fs.emptyDirSync(RED.settings.userDir + '/nodes')
@@ -43,7 +59,6 @@ module.exports = function (RED) {
           fs.writeFileSync(RED.settings.userDir + '/nodes/' + value.id + '/' + key, value[key])
         })
       })
-
       var cmd = ''
 
       // git init
@@ -84,7 +99,7 @@ module.exports = function (RED) {
       // git add flows
       cmd = [
         'cd ' + RED.settings.userDir,
-        'git add ' + flowsFile,
+        'git add ' + flowsFilePath,
         'git add ' + 'nodes',
       ].join(';')
       execSync(cmd).toString()
@@ -135,7 +150,7 @@ module.exports = function (RED) {
             'git push -u origin master'
           ].join(';')
           gitPush = execSync(cmd).toString()
-        }        
+        }
       } catch(err) {
         // console.log(err)
       } finally {
