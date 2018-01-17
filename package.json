@@ -28,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/high-u/node-red-contrib-git-nodes/issues"
   },
-  "homepage": "https://github.com/high-u/node-red-contrib-git-nodes#readme"
+  "homepage": "https://github.com/high-u/node-red-contrib-git-nodes#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "fs-extra": "^5.0.0"
+  }
 }
