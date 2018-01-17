@@ -75,7 +75,7 @@ module.exports = function (RED) {
           'LEN=`git remote`',
           '[ ${#LEN} -eq 0 ] && git remote add origin ' + node.git + ' || :'
         ].join(';')
-        execSync(cmd).toString()
+        execSync(cmd)
       }
 
       // git config --local user.name
@@ -84,7 +84,7 @@ module.exports = function (RED) {
           'cd ' + RED.settings.userDir,
           'git config --local user.name "' + node.username + '"'
         ].join(';')
-        execSync(cmd).toString()
+        execSync(cmd)
       }
 
       // git config --local user.email
@@ -93,7 +93,7 @@ module.exports = function (RED) {
           'cd ' + RED.settings.userDir,
           'git config --local user.email "' + node.email + '"'
         ].join(';')
-        execSync(cmd).toString()
+        execSync(cmd)
       }
 
       // git add flows
@@ -102,7 +102,7 @@ module.exports = function (RED) {
         'git add ' + flowsFilePath,
         'git add ' + 'nodes',
       ].join(';')
-      execSync(cmd).toString()
+      execSync(cmd)
 
       // git add
       if (node.gitadd) {
@@ -112,7 +112,7 @@ module.exports = function (RED) {
         });
         gitadd.unshift('cd ' + RED.settings.userDir);
         cmd = gitadd.join(';')
-        execSync(cmd).toString()
+        execSync(cmd)
       }
 
       // git rm --cached
@@ -123,7 +123,7 @@ module.exports = function (RED) {
         });
         gitrm.unshift('cd ' + RED.settings.userDir);
         cmd = gitrm.join(';')
-        execSync(cmd).toString()
+        execSync(cmd)
       }
       
       // git status
