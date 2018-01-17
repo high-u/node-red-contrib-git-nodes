@@ -27,8 +27,14 @@ module.exports = function (RED) {
       var flowsFile = RED.settings.userDir + '/' + RED.settings.flowFile
       var flowsJson = fs.readFileSync(flowsFile, 'utf-8')
 
-      // remove nodes files
-      fs.emptyDirSync(RED.settings.userDir + '/nodes')
+      if (fs.pathExistsSync(RED.settings.userDir + '/nodes')) {
+        // remove nodes files
+        fs.emptyDirSync(RED.settings.userDir + '/nodes')
+      }
+      else {
+        // make dir
+        fs.mkdirsSync(RED.settings.userDir + '/nodes')
+      }
       // make nodes files
       var flowsObj = JSON.parse(flowsJson)
       flowsObj.forEach(function (value) {
