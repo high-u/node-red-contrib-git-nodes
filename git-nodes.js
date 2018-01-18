@@ -10,8 +10,6 @@ module.exports = function (RED) {
     RED.nodes.createNode(this, n)
 
     this.git = RED.nodes.getNode(n.git);
-    this.username = n.username
-    this.email = n.email
     this.gitrmcache = n.gitrmcache
     this.gitadd = n.gitadd
     this.debugging = n.debugging
@@ -62,32 +60,6 @@ module.exports = function (RED) {
       })
       var cmd = ''
 
-      // docker の時、ssh だとちょっと困ったので
-      // https://qiita.com/azusanakano/items/8dc1d7e384b00239d4d9
-      // ~/.netrc
-      // machine github.com
-      // login username
-      // password xxxxxxx
-      //
-      // process.env.HOME
-      // https://github.com/high-u/node-red-test-git.git
-
-      console.log("git01", node.git)
-
-      var gitendpoint = node.git.git
-      var re = /(^https:\/\/)([a-zA-Z.]+)/
-      if (re.test(gitendpoint) && node.git.username && node.git.password) {
-        var httpsDomain = re.exec(gitendpoint)[2]
-        console.log(gitService)
-
-        var netrc = [
-          'machine ' + httpsDomain,
-          'login ' + node.git.username,
-          'password ' + node.git.password
-        ].join('\n')
-        fs.writeFileSync(process.env.HOME + '/.netrc', netrc)
-      }
-
       // git init
       cmd = [
         'cd ' + RED.settings.userDir,
@@ -106,19 +78,19 @@ module.exports = function (RED) {
       }
 
       // git config --local user.name
-      if (node.username) {
+      if (node.git.username) {
         cmd = [
           'cd ' + RED.settings.userDir,
-          'git config --local user.name "' + node.username + '"'
+          'git config --local user.name "' + node.git.username + '"'
         ].join(';')
         execSync(cmd)
       }
 
       // git config --local user.email
-      if (node.email) {
+      if (node.git.useremail) {
         cmd = [
           'cd ' + RED.settings.userDir,
-          'git config --local user.email "' + node.email + '"'
+          'git config --local user.email "' + node.git.useremail + '"'
         ].join(';')
         execSync(cmd)
       }

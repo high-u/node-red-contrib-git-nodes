@@ -7,7 +7,7 @@
       },
       credentials: {
           username: {type:"text"},
-          password: {type:"text"}
+          useremail: {type:"text"}
       },
       label: function() {
           return this.name;
@@ -17,19 +17,19 @@
 
 <script type="text/x-red" data-template-name="git-nodes-config">
   <div class="form-row">
-    <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
-    <input type="text" id="node-config-input-name">
+    <label for="node-config-input-name" style="width:150px;"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name" style='width:60%;'>
   </div>
   <div class="form-row">
-    <label for="node-config-input-git"><i class="fa fa-code-fork"></i> git repository</label>
-    <input type="text" id="node-config-input-git" placeholder="git@github.com:{user-name}/{repository-name}.git">
+    <label for="node-config-input-git" style="width:150px;"><i class="fa fa-code-fork"></i> git repository (ssh)</label>
+    <input type="text" id="node-config-input-git" style='width:60%;' placeholder="git@github.com:{user-name}/{repository-name}.git">
   </div>
   <div class="form-row">
-    <label for="node-config-input-username"><i class="fa fa-user"></i> Username</label>
-    <input type="text" id="node-config-input-username">
+    <label for="node-config-input-username" style="width:150px;"><i class="fa fa-user-o"></i> user.name</label>
+    <input type="text" id="node-config-input-username" style='width:60%;'>
   </div>
   <div class="form-row">
-    <label for="node-config-input-password"><i class="fa fa-key"></i> Password</label>
-    <input type="password" id="node-config-input-password">
+    <label for="node-config-input-useremail" style="width:150px;"><i class="fa fa-envelope-o"></i> user.email</label>
+    <input type="text" id="node-config-input-useremail" style='width:60%;'>
   </div>
 </script>
