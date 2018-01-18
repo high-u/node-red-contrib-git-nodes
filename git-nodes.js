@@ -8,9 +8,10 @@ module.exports = function (RED) {
   function gitNodesNode(n) {
 
     RED.nodes.createNode(this, n)
+
+    this.git = RED.nodes.getNode(n.git);
     this.username = n.username
     this.email = n.email
-    this.git = n.git
     this.gitrmcache = n.gitrmcache
     this.gitadd = n.gitadd
     this.debugging = n.debugging
@@ -71,17 +72,21 @@ module.exports = function (RED) {
       // process.env.HOME
       // https://github.com/high-u/node-red-test-git.git
 
-      var test = 'https://github.com/high-u/node-red-test-git.git'
-      var re = /(^https:\/\/)([a-zA-Z.]+)/
-      var gitService = re.exec(test)[2]
-      console.log(gitService)
+      console.log("git01", node.git)
 
-      var netrc = [
-        'machine ' + gitService,
-        'login ' + process.env.GIT_HTTPS_USER,
-        'password ' + process.env.GIT_HTTPS_PW
-      ].join('\n')
-      fs.writeFileSync(process.env.HOME + '/.netrc', netrc)
+      var gitendpoint = node.git.git
+      var re = /(^https:\/\/)([a-zA-Z.]+)/
+      if (re.test(gitendpoint) && node.git.username && node.git.password) {
+        var httpsDomain = re.exec(gitendpoint)[2]
+        console.log(gitService)
+
+        var netrc = [
+          'machine ' + httpsDomain,
+          'login ' + node.git.username,
+          'password ' + node.git.password
+        ].join('\n')
+        fs.writeFileSync(process.env.HOME + '/.netrc', netrc)
+      }
 
       // git init
       cmd = [
@@ -91,11 +96,11 @@ module.exports = function (RED) {
       execSync(cmd)
 
       // git remote add origin
-      if (node.git) {
+      if (node.git.git) {
         cmd = [
           'cd ' + RED.settings.userDir,
           'LEN=`git remote`',
-          '[ ${#LEN} -eq 0 ] && git remote add origin ' + node.git + ' || :'
+          '[ ${#LEN} -eq 0 ] && git remote add origin ' + node.git.git + ' || :'
         ].join(';')
         execSync(cmd)
       }
@@ -166,7 +171,7 @@ module.exports = function (RED) {
         gitCommit = execSync(cmd).toString()
 
         // git push
-        if (node.git) {
+        if (node.git.git) {
           cmd = [
             'cd ' + RED.settings.userDir,
             'git push -u origin master'
