@@ -170,7 +170,7 @@ module.exports = function (RED) {
         res.sendStatus(200);
       }
     } else {
-      res.sendStatus(404);
+      res.sendStatus(500);
     }
   })
 }
