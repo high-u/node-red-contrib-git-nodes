@@ -6,11 +6,10 @@
         label: { value: '' },
         username: { value: '' },
         email: { value: '' },
-        git: { value: '' },
         gitadd: { value: 'settings.js,package.json' },
         gitrmcache: { value: 'nodes/*/x,nodes/*/y,nodes/*/z' },
         debugging: { value: true},
-        credential: { type: "git-nodes-config" }
+        git: { type: "git-nodes-config", required: false }
       },
       inputs: 0,
       outputs: 0,
@@ -69,16 +68,7 @@
   <hr />
   <div class="form-row">
     <label for="node-input-git" style='width:150px;'><i class="fa fa-code-fork"></i> git repository</label>
-    <input type="text" id="node-input-git" placeholder='git@github.com:{user-name}/{repository-name}.git' style='width:60%;'>
-    <div style="padding-left:160px;">
-      (for example)<br />
-      git@github.com:username/repository-name.git<br />
-      https://github.com/high-u/node-red-test-git.git
-    </div>
-  </div>
-  <div class="form-row">
-    <label for="node-input-credential" style='width:150px;'><i class="fa fa-unlock"></i> Credential</label>
-    <input type="text" id="node-input-credential" style='width:60%;'>
+    <input type="text" id="node-input-git" style='width:60%;'>
   </div>
 </script>
 <script type='text/x-red' data-help-name='git-nodes'>
