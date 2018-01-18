@@ -19,7 +19,10 @@ module.exports = function (RED) {
 
   RED.httpAdmin.post("/git-nodes/:id", RED.auth.needsPermission("git-nodes.write"), function(req,res) {
     var addminNode = RED.nodes.getNode(req.params.id);
-    if (addminNode != null) {      
+    if (addminNode != null) {
+
+      node.status({fill:"green",shape:"dot",text:"Processing..."});
+
       addminNode.receive();
 
       var userDir = ''
@@ -152,6 +155,7 @@ module.exports = function (RED) {
         }
       } catch(err) {
         // console.log(err)
+        node.status({fill:"red",shape:"dot",text:"Error"});
       } finally {
         if (node.debugging) {
           RED.comms.publish("debug",{msg: {
@@ -160,6 +164,7 @@ module.exports = function (RED) {
             push: gitPush
           }})
           //node.send({payload: msg})
+          node.status({});
         }
 
         res.sendStatus(200);
