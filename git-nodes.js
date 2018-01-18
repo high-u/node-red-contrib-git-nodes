@@ -61,6 +61,28 @@ module.exports = function (RED) {
       })
       var cmd = ''
 
+      // docker の時、ssh だとちょっと困ったので
+      // https://qiita.com/azusanakano/items/8dc1d7e384b00239d4d9
+      // ~/.netrc
+      // machine github.com
+      // login username
+      // password xxxxxxx
+      //
+      // process.env.HOME
+      // https://github.com/high-u/node-red-test-git.git
+
+      var test = 'https://github.com/high-u/node-red-test-git.git'
+      var re = /(^https:\/\/)([a-zA-Z.]+)/
+      var gitService = re.exec(test)[2]
+      console.log(gitService)
+
+      var netrc = [
+        'machine ' + gitService,
+        'login ' + process.env.GIT_HTTPS_USER,
+        'password ' + process.env.GIT_HTTPS_PW
+      ].join('\n')
+      fs.writeFileSync(process.env.HOME + '/.netrc', netrc)
+
       // git init
       cmd = [
         'cd ' + RED.settings.userDir,

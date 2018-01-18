@@ -3,7 +3,8 @@
   "version": "0.1.6",
   "node-red": {
     "nodes": {
-      "git-nodes": "git-nodes.js"
+      "git-nodes": "git-nodes.js",
+      "git-nodes-config": "git-nodes-config.js"
     }
   },
   "description": "for Node-RED. management flows.",
