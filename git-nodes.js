@@ -10,6 +10,7 @@ module.exports = function (RED) {
     RED.nodes.createNode(this, n)
 
     this.git = RED.nodes.getNode(n.git);
+    this.branch = n.branch
     this.gitrmcache = n.gitrmcache
     this.gitadd = n.gitadd
     this.debugging = n.debugging
@@ -61,7 +62,9 @@ module.exports = function (RED) {
           fs.writeFileSync(RED.settings.userDir + '/nodes/' + value.id + '/' + key, value[key])
         })
       })
+
       var cmd = ''
+      var execOpt = {cwd: RED.settings.userDir, encoding: 'utf8'}
 
       // git init
       cmd = [
@@ -97,6 +100,44 @@ module.exports = function (RED) {
         ].join(';')
         execSync(cmd)
       }
+
+      // branch
+      console.log("branch")
+      var branch = ''
+      if (node.branch && node.branch !== 'master') {
+        
+        // get current branch name
+        var currentBranch = execSync('git rev-parse --abbrev-ref HEAD', execOpt)
+        
+        // Existence check of the branch.
+        var localBranchList = execSync('git branch', execOpt)
+        var reg = new RegExp(' ' + node.branch + '\n')
+        var isLocalBranch = reg.test(localBranchList)
+        console.log(isLocalBranch)
+
+        // When the branch exists, change it.
+        if (isLocalBranch) {
+          console.log("isLocalBranch true")
+          execSync('git checkout ' + node.branch, execOpt)
+        }
+        // When there is no branch, create the branch.
+        else {
+          console.log("isLocalBranch false")
+          execSync('git checkout -b ' + node.branch, execOpt)
+        }
+
+        // Existence check of the remote branch.
+        var remoteBranchList = execSync('git branch -r', execOpt)
+        var reg2 = new RegExp('/' + node.branch + '\n')
+        var isRemoteBranch = reg2.test(remoteBranchList)
+        console.log(isRemoteBranch)
+
+        // When there is no branch, create the remote branch.
+        if (!isRemoteBranch) {
+          console.log("isRemoteBranch false")
+          execSync('git push -u origin ' + node.branch, execOpt)
+        }
+      } 
 
       // git add flows
       cmd = [
@@ -149,7 +190,7 @@ module.exports = function (RED) {
         if (node.git.git) {
           cmd = [
             'cd ' + RED.settings.userDir,
-            'git push -u origin master'
+            'git push -u origin ' + node.branch
           ].join(';')
           gitPush = execSync(cmd).toString()
         }
