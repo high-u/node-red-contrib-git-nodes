@@ -5,6 +5,7 @@
       defaults: {
         label: { value: '' },
         branch: { value: 'master' },
+        sourcebranch: { value: 'master' },
         gitadd: { value: 'settings.js,package.json' },
         gitrmcache: { value: 'nodes/*/x,nodes/*/y,nodes/*/z' },
         debugging: { value: true},
@@ -43,8 +44,13 @@
     <input type='text' id='node-input-label' placeholder='' style='width:60%;'>
   </div>
   <div class="form-row">
-    <label for="node-input-branch" style='width:150px;'><i class="fa fa-pagelines"></i> branch name</label>
+    <label for="node-input-branch" style='width:150px;'><i class="fa fa-pagelines"></i> branch</label>
     <input type="text" id="node-input-branch" placeholder='master' style='width:60%;'>
+  </div>
+  <div class="form-row">
+    <label for="node-input-sourcebranch" style='width:150px;'><i class="fa fa-pagelines"></i> source branch</label>
+    <input type="text" id="node-input-sourcebranch" placeholder='master' style='width:60%;'>
+    <div style="padding-left:160px;">Source branch when creating a new branch</div>
   </div>
   <div class="form-row">
     <label for="node-input-gitadd" style='width:150px;'><i class="fa fa-plus-circle"></i> git add</label>
