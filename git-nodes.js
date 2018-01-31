@@ -10,6 +10,7 @@ module.exports = function (RED) {
     RED.nodes.createNode(this, n)
 
     this.git = RED.nodes.getNode(n.git);
+    this.name = n.name
     this.branch = n.branch
     this.sourcebranch = n.sourcebranch
     this.gitrmcache = n.gitrmcache
@@ -85,6 +86,7 @@ module.exports = function (RED) {
             '[ ${#LEN} -eq 0 ] && git remote add origin ' + node.git.git + ' || :'
           ].join(';')
           execSync(cmd)
+          execSync('git remote set-url origin ' + node.git.git, execOpt)
         }
 
         // git config --local user.name
