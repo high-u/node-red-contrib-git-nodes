@@ -22,18 +22,20 @@
           //alert("")
           var commitMessage = prompt("Input commit message")
           //alert(commitMessage)
-          var node = this;
-          $.ajax({
-            url: "git-nodes/"+this.id,
-            data: { commitMessage: commitMessage },
-            type:"post",
-            success: function(resp) {
-              RED.notify(node._("git command success",{label:"git"}),"success");
-            },
-            error: function(jqXHR,textStatus,errorThrown) {
-              RED.notify(node._("git command error",{label:"git"}),"error");
-            }
-        });
+          if (commitMessage) {
+            var node = this;
+            $.ajax({
+              url: "git-nodes/"+this.id,
+              data: { commitMessage: commitMessage },
+              type:"post",
+              success: function(resp) {
+                RED.notify(node._("git command success",{label:"git"}),"success");
+              },
+              error: function(jqXHR,textStatus,errorThrown) {
+                RED.notify(node._("git command error",{label:"git"}),"error");
+              }
+            });
+          }
       }
     }
   });
